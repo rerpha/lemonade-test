@@ -1,0 +1,32 @@
+services:
+  lemonade:
+    image: ghcr.io/lemonade-sdk/lemonade-server:latest
+    container_name: lemonade-server
+    ports:
+      - "8000:8000"
+    volumes:
+      # Persist downloaded models
+      - lemonade-cache:/root/.cache/huggingface
+      # Persist llama binaries
+      - lemonade-llama:/opt/lemonade/llama
+      # Persist model options and other backend binaries
+      - lemonade-recipe:/root/.cache/lemonade
+    environment:
+      - LEMONADE_LLAMACPP_BACKEND=cpu
+    restart: unless-stopped
+
+  openwebui:
+    image: ghcr.io/open-webui/open-webui:main
+    ports:
+      - "3000:8080"
+    environment:
+      - OPENAI_API_BASE_URL=http://lemonade:8000/v1
+    volumes:
+      - open-webui:/app/backend/data
+
+volumes:
+  lemonade-cache:
+  lemonade-llama:
+  lemonade-recipe:
+  open-webui:
+
