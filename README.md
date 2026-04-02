@@ -1,6 +1,5 @@
-# AI learning
 
-this is an attempt to get [lemonade](https://lemonade-server.ai/) working on my own PC. 
+This is an attempt to get [lemonade](https://lemonade-server.ai/) working on my own PC. 
 
 I used vulkan here as that's what they seemed to be recommending at the time, though I did set up ROCm on my machine.
 
