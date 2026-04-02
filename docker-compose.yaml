@@ -12,8 +12,13 @@ services:
       # Persist model options and other backend binaries
       - lemonade-recipe:/root/.cache/lemonade
     environment:
-      - LEMONADE_LLAMACPP_BACKEND=cpu
+      - LEMONADE_LLAMACPP_BACKEND=vulkan
+    devices:
+      - /dev/kfd
+      - /dev/dri
     restart: unless-stopped
+    group_add:
+      - 44
 
   openwebui:
     image: ghcr.io/open-webui/open-webui:main
