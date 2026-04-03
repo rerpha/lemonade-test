@@ -12,7 +12,7 @@ services:
       # Persist model options and other backend binaries
       - lemonade-recipe:/root/.cache/lemonade
     environment:
-      - LEMONADE_LLAMACPP_BACKEND=vulkan
+      - LEMONADE_LLAMACPP_BACKEND=rocm  # change this to vulkan if you want
     devices:
       - /dev/kfd
       - /dev/dri
